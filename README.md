@@ -1,16 +1,35 @@
 # projec1
 
-A new Flutter project.
+Universidade Tecnológica Federal do Paraná - UTFPR - Ponta Grossa/PR
+Ciência da Computação
+Programação De Dispositivos Móveis
+Professor: Prof. Dr. Diego Roberto Antunes
 
-## Getting Started
+Ideia do projeto:
+Baseando-se na disciplina de Sistemas Distribuidos, a ideia seria executar o desenvolvimento um portal de vagas para empresas e candidatos
 
-This project is a starting point for a Flutter application.
+# Candidato #
 
-A few resources to get you started if this is your first Flutter project:
+CRUD do perfil do candidato [ nome, email, senha ]
+Listar suas competências, experiências [ adicionar, atualizar, apagar ]
+Realizar busca por vagas
+Receber mensagens das empresas para entrevista
+Visualizar vagas disponíveis e o tipo de perfil [ busca lógica [ ramo, faixa salarial, competencias, experciencia ]]
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+--> Logar e deslogar do sistema <--
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+# Empresa #
+
+CRUD do perfil da empresa [ nome, ramo, descricao, email, senha ]
+Ofertar vagas com determinado perfil 
+Buscar candidato com perfil especifico
+Selecioar um ou diversos candidatos
+Mandar mensagem para os candidatos
+
+--> Logar e deslogar do sistema <--
+--> Ofertar vagas <-- [ disponivel, divulgavel, busca de perfil, listar candidatos ]
+--> Busca de candidatos <-- [ filtrar por competencias e experiencia ]
+
+Caso algum dos topicos acima se mostrar trabalhoso demais e cause problemas com data de entrega, será removido do projeto, podendo ser adicionado novamente no futuro, ou nao.
