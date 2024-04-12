@@ -1,35 +1,35 @@
 # projec1
 
-Universidade Tecnológica Federal do Paraná - UTFPR - Ponta Grossa/PR
-Ciência da Computação
-Programação De Dispositivos Móveis
-Professor: Prof. Dr. Diego Roberto Antunes
+<p>Universidade Tecnológica Federal do Paraná - UTFPR - Ponta Grossa/PR</p>
+<p>Ciência da Computação</p>
+<p>Programação De Dispositivos Móveis</p>
+<p>Professor: Prof. Dr. Diego Roberto Antunes</p>
 
-Ideia do projeto:
+# Ideia basica do projeto #
 Baseando-se na disciplina de Sistemas Distribuidos, a ideia seria executar o desenvolvimento um portal de vagas para empresas e candidatos
 
 # Candidato #
 
-CRUD do perfil do candidato [ nome, email, senha ]
-Listar suas competências, experiências [ adicionar, atualizar, apagar ]
-Realizar busca por vagas
-Receber mensagens das empresas para entrevista
-Visualizar vagas disponíveis e o tipo de perfil [ busca lógica [ ramo, faixa salarial, competencias, experciencia ]]
+<p>CRUD do perfil do candidato [ nome, email, senha ]</p>
+<p>Listar suas competências, experiências [ adicionar, atualizar, apagar ]</p>
+<p>Realizar busca por vagas</p>
+<p>Receber mensagens das empresas para entrevista</p>
+<p>Visualizar vagas disponíveis e o tipo de perfil [ busca lógica [ ramo, faixa salarial, competencias, experciencia ]]</p>
 
---> Logar e deslogar do sistema <--
+<p>--> Logar e deslogar do sistema <--</p>
 
 
 
 # Empresa #
 
-CRUD do perfil da empresa [ nome, ramo, descricao, email, senha ]
-Ofertar vagas com determinado perfil 
-Buscar candidato com perfil especifico
-Selecioar um ou diversos candidatos
-Mandar mensagem para os candidatos
+<p>CRUD do perfil da empresa [ nome, ramo, descricao, email, senha ]</p>
+<p>Ofertar vagas com determinado perfil</p>
+<p>Buscar candidato com perfil especifico</p>
+<p>Selecioar um ou diversos candidatos</p>
+<p>Mandar mensagem para os candidatos</p>
 
---> Logar e deslogar do sistema <--
---> Ofertar vagas <-- [ disponivel, divulgavel, busca de perfil, listar candidatos ]
---> Busca de candidatos <-- [ filtrar por competencias e experiencia ]
+<p>--> Logar e deslogar do sistema <--</p>
+<p>--> Ofertar vagas <-- [ disponivel, divulgavel, busca de perfil, listar candidatos ]</p>
+<p>--> Busca de candidatos <-- [ filtrar por competencias e experiencia ]</p>
 
-Caso algum dos topicos acima se mostrar trabalhoso demais e cause problemas com data de entrega, será removido do projeto, podendo ser adicionado novamente no futuro, ou nao.
+<p>Caso algum dos topicos acima se mostrar trabalhoso demais e cause problemas com data de entrega, será removido do projeto, podendo ser adicionado novamente no futuro, ou nao.</p>
