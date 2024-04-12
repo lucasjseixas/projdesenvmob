@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
-          child: Text('Efetue LOGIN para continuar'),
+          child: Text('Efetue o LOGIN para continuar'),
         ),
         actions: <Widget>[
           IconButton(
@@ -34,17 +34,60 @@ class LoginPage extends StatelessWidget {
           ),
         ],
       ),
+      body: const CardInicial(),
     );
   }
 }
 
-class cardInicial extends StatelessWidget {
-  const cardInicial({super.key});
+class CardInicial extends StatelessWidget {
+  const CardInicial({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Card(
+            child: _SampleCard(cardName: 'Candidatos', icon: Icons.person),
+          ),
+          Card(
+            child:
+                _SampleCard(cardName: 'Empresas', icon: Icons.business_sharp),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SampleCard extends StatelessWidget {
+  const _SampleCard({required this.cardName, required this.icon});
+  final String cardName;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        splashColor: const Color.fromARGB(255, 166, 33, 243).withAlpha(30),
+        onTap: () {},
+        child: SizedBox(
+          width: 300,
+          height: 100,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon),
+                const SizedBox(height: 8),
+                Text(cardName),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
