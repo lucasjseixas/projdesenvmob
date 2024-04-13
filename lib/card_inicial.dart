@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'sample_card.dart';
+import '/depreciado/sample_card.dart';
 
 class CardInicial extends StatelessWidget {
-  const CardInicial({Key? key}) : super(key: key);
+  const CardInicial({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Card(
+           Card(
             child: SampleCard(cardName: 'Candidatos', icon: Icons.person),
           ),
-          Card(
+           Card(
             child: SampleCard(cardName: 'Empresas', icon: Icons.business_sharp),
           ),
         ],

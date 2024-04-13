@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SampleCard extends StatelessWidget {
-  const SampleCard({Key? key, required this.cardName, required this.icon})
-      : super(key: key);
+  const SampleCard({super.key, required this.cardName, required this.icon});
   final String cardName;
   final IconData icon;
 
