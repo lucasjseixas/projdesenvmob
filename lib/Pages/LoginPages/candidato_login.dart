@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/Pages/LoginPages/Forms/cadidato_form.dart';
 
 class CandidatoLoginInfo extends StatelessWidget {
   const CandidatoLoginInfo({super.key});
@@ -7,7 +8,7 @@ class CandidatoLoginInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PAGINA DE LOGIN DO CANDIDATO'),
+        title: const Text('PAGINA DE LOGIN DE CANDIDATOS'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(40.0),
@@ -51,11 +52,27 @@ class CandidatoLoginInfo extends StatelessWidget {
                 },
               ),
               const Text('Esqueceu sua senha?'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: const Text('Cadastrar')),
-                  ElevatedButton(onPressed: () {}, child: const Text('Login')),
+                  Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => const CandidatoForm()),
+                            ),
+                          );
+                        },
+                        child: const Text('Cadastrar')),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(25.0),
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text('Login')),
+                  ),
                 ],
               ),
             ],
