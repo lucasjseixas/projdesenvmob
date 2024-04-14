@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:projec1/Perfis/candidato_perfil.dart';
-import 'package:projec1/Utils/dropdownmenu.dart';
 
 class CandidatoForm extends StatefulWidget {
   const CandidatoForm({super.key});
@@ -10,8 +10,29 @@ class CandidatoForm extends StatefulWidget {
 }
 
 class _CandidatoFormState extends State<CandidatoForm> {
-  final _dateController = TextEditingController();
+  //final _dateController = TextEditingController();
   final _nomeCandidatoController = TextEditingController();
+  final _emailCandidatoController = TextEditingController();
+  final _emailCandidatoConfirmarController = TextEditingController();
+  final _senhaCandidatoController = TextEditingController();
+  final _usuarioCandidatoController = TextEditingController();
+
+  void clearTextField() {
+    _nomeCandidatoController.clear();
+    _emailCandidatoController.clear();
+    _emailCandidatoConfirmarController.clear();
+    _senhaCandidatoController.clear();
+    _usuarioCandidatoController.clear();
+  }
+
+  String? validateEmail(String? email) {
+    RegExp emailRegex = RegExp(r'^[\w\.-]+@[\w-]+\.\w{2,3}(\.\w{2,3})?$');
+    final isEmailValid = emailRegex.hasMatch(email ?? '');
+    if (!isEmailValid) {
+      return 'Insira um email valido';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +42,30 @@ class _CandidatoFormState extends State<CandidatoForm> {
       ),
       body: Column(
         children: [
-          TextFormField(
-            key: const Key('nomecandidato'),
-            controller: _nomeCandidatoController,
-            decoration: const InputDecoration(labelText: 'Nome Completo'),
-            keyboardType: TextInputType.text,
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextFormField(
+              key: const Key('nomecandidato'),
+              controller: _nomeCandidatoController,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Digite seu nome completo'),
+              keyboardType: TextInputType.text,
+              validator: (nome) => nome!.length < 3
+                  ? 'Seu nome precisa ter 3 letras pelo menos*'
+                  : null,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextFormField(key: const Key('usuariocandidato'),
+            controller: _usuarioCandidatoController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+                labelText: 'Digite seu usuario'),
+                keyboardType: TextInputType.text,
+                validator: (usuario) => usuario!.length < 5 ? 'Seu usuario precisa ter 3 letras pelo menos*' : null,
+              ),
           ),
           /*
           TextFormField(
@@ -45,20 +85,43 @@ class _CandidatoFormState extends State<CandidatoForm> {
               _selectDate();
             },
           ),*/
-          TextFormField(
-            key: const Key('emailcandidato'),
-            decoration: const InputDecoration(labelText: 'E-mail'),
-            keyboardType: TextInputType.emailAddress,
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextFormField(
+              key: const Key('emailcandidato'),
+              controller: _emailCandidatoController,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'Digite seu e-mail'),
+              keyboardType: TextInputType.emailAddress,
+              validator: validateEmail,
+            ),
           ),
-          TextFormField(
-            key: const Key('confirmaremailcandidato'),
-            decoration: const InputDecoration(labelText: 'Confirme o E-Mail'),
-            keyboardType: TextInputType.emailAddress,
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextFormField(
+              key: const Key('confirmaremailcandidato'),
+              controller: _emailCandidatoConfirmarController,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Confirme seu e-Mail'),
+              keyboardType: TextInputType.emailAddress,
+              validator: validateEmail,
+            ),
           ),
-          /*
-          const Text('Estado'),
-          const DropDownMenu(),
-          */
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextFormField(
+              key: const Key('candidatosenha'),
+              obscureText: true,
+              controller: _senhaCandidatoController,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: 'Digite sua senha'),
+              keyboardType: TextInputType.text,
+              validator: (value) => value!.length < 5
+                  ? 'Sua senha deve possuir pelo menos 5 caracteres*'
+                  : null,
+            ),
+          ),
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -68,11 +131,16 @@ class _CandidatoFormState extends State<CandidatoForm> {
                 );
               },
               child: const Text('CADASTRAR')),
-          ElevatedButton(onPressed: () {}, child: const Text('LIMPAR')),
+          ElevatedButton(
+              onPressed: () {
+                clearTextField();
+              },
+              child: const Text('LIMPAR')),
         ],
       ),
     );
   }
+/* // Funcao para criação de um calendario //
 
   Future<void> _selectDate() async {
     DateTime? _picked = await showDatePicker(
@@ -89,4 +157,5 @@ class _CandidatoFormState extends State<CandidatoForm> {
       );
     }
   }
+*/
 }

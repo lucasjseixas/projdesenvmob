@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/Pages/LoginPages/Forms/cadidato_form.dart';
 
-class CandidatoLoginInfo extends StatelessWidget {
+final _formKey = GlobalKey<FormState>();
+
+class CandidatoLoginInfo extends StatefulWidget {
   const CandidatoLoginInfo({super.key});
 
+  @override
+  State<CandidatoLoginInfo> createState() => _CandidatoLoginInfoState();
+}
+
+class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,6 +20,7 @@ class CandidatoLoginInfo extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Form(
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -25,13 +33,10 @@ class CandidatoLoginInfo extends StatelessWidget {
                   prefixIcon: Icon(Icons.person_2),
                 ),
                 keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'asdf';
-                  } else if (true) {
-                    return 'Erro2';
-                  }
-                },
+                validator: (usuario) => usuario!.length < 4
+                    ? 'Usuário deve possuir pelo menos 3 caracteres*'
+                    : null,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
               TextFormField(
                 key: const Key('senha'),
@@ -43,15 +48,9 @@ class CandidatoLoginInfo extends StatelessWidget {
                   suffixIcon: Icon(Icons.remove_red_eye),
                 ),
                 keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Erro';
-                  } else if (true) {
-                    return 'Erro2';
-                  }
-                },
+                validator: (value) => value!.isEmpty ? 'Senha inválida' : null,
               ),
-              const Text('Esqueceu sua senha?'),
+              TextButton(onPressed: (){}, child: const Text('Esqueceu sua senha?')),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -71,7 +70,10 @@ class CandidatoLoginInfo extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Login')),
+                        onPressed: () {
+                          _formKey.currentState!.validate();
+                        },
+                        child: const Text('Login')),
                   ),
                 ],
               ),
