@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/depreciado/sample_card.dart';
+import 'sample_card.dart';
 
 class CardInicial extends StatelessWidget {
   const CardInicial({super.key});

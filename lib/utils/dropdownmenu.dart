@@ -44,7 +44,6 @@ class _DropDownMenuState extends State<DropDownMenu> {
     return DropdownMenu<String>(
       initialSelection: siglaestados.first,
       onSelected: (String? value) {
-        // This is called when the user selects an item.
         setState(() {
           dropdownValue = value!;
         });

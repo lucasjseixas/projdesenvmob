@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/utils/dropdownmenu.dart';
+import 'package:projec1/Perfis/candidato_perfil.dart';
+import 'package:projec1/Utils/dropdownmenu.dart';
 
 class CandidatoForm extends StatefulWidget {
   const CandidatoForm({super.key});
@@ -53,6 +54,15 @@ class _CandidatoFormState extends State<CandidatoForm> {
           ),
           const Text('Estado'),
           const DropDownMenu(),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CandidatoPerfil()),
+                );
+              },
+              child: const Text('CADASTRAR'))
         ],
       ),
     );
