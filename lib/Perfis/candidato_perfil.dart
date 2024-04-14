@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class CandidatoPerfil extends StatefulWidget {
+class CandidatoPerfil extends StatelessWidget {
   const CandidatoPerfil({super.key});
 
-  @override
-  State<CandidatoPerfil> createState() => _CandidatoPerfilState();
-}
-
-class _CandidatoPerfilState extends State<CandidatoPerfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +15,7 @@ class _CandidatoPerfilState extends State<CandidatoPerfil> {
           ClipRRect(
             borderRadius: BorderRadius.circular(120),
             child: Image.asset(
-              'assets/image/fotoplaceholder.png',
+              'assets/images/fotoplaceholder.png',
               fit: BoxFit.cover,
               width: 180,
               height: 180,

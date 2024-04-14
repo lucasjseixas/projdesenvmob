@@ -10,7 +10,8 @@ class CandidatoForm extends StatefulWidget {
 }
 
 class _CandidatoFormState extends State<CandidatoForm> {
-  final TextEditingController _dateController = TextEditingController();
+  final _dateController = TextEditingController();
+  final _nomeCandidatoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,14 @@ class _CandidatoFormState extends State<CandidatoForm> {
         children: [
           TextFormField(
             key: const Key('nomecandidato'),
+            controller: _nomeCandidatoController,
             decoration: const InputDecoration(labelText: 'Nome Completo'),
             keyboardType: TextInputType.text,
           ),
+          /*
           TextFormField(
             key: const Key('enderecocandidato'),
-            decoration: const InputDecoration(labelText: 'Endereco Completo'),
+            decoration: const InputDecoration(labelText: 'Endereço Completo'),
             keyboardType: TextInputType.streetAddress,
           ),
           TextFormField(
@@ -41,7 +44,7 @@ class _CandidatoFormState extends State<CandidatoForm> {
             onTap: () {
               _selectDate();
             },
-          ),
+          ),*/
           TextFormField(
             key: const Key('emailcandidato'),
             decoration: const InputDecoration(labelText: 'E-mail'),
@@ -52,8 +55,10 @@ class _CandidatoFormState extends State<CandidatoForm> {
             decoration: const InputDecoration(labelText: 'Confirme o E-Mail'),
             keyboardType: TextInputType.emailAddress,
           ),
+          /*
           const Text('Estado'),
           const DropDownMenu(),
+          */
           ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -62,7 +67,8 @@ class _CandidatoFormState extends State<CandidatoForm> {
                       builder: (context) => const CandidatoPerfil()),
                 );
               },
-              child: const Text('CADASTRAR'))
+              child: const Text('CADASTRAR')),
+          ElevatedButton(onPressed: () {}, child: const Text('LIMPAR')),
         ],
       ),
     );
