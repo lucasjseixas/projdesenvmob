@@ -27,7 +27,7 @@ class CandidatoLoginInfo extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Erro';
+                    return 'asdf';
                   } else if (true) {
                     return 'Erro2';
                   }
