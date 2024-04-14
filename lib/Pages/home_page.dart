@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'LoginPages/candidato_login.dart';
+import 'LoginPages/empresa_login.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,28 +24,34 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
-                    );
-                  },
-                ),
-                FloatingActionButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
-                    );
-                  },
-                ),
-              ],
-            ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EmpresaLoginInfo()),
+                  );
+                },
+                icon: const Icon(Icons.business),
+                label: const Text('Empresas'),
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CandidatoLoginInfo()),
+                  );
+                },
+                icon: const Icon(Icons.person),
+                label: const Text('Candidatos'),
+              )
+            ],
+          ),
         ],
       ),
-      );
+    );
   }
 }
