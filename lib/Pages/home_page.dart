@@ -9,16 +9,47 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text('HOME PAGE'),
-        ),
+        title: const Text('HOME PAGE'),
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.engineering),
-            tooltip: 'Opções',
-            onPressed: () => {},
+            onPressed: () {},
+            icon: const Icon(Icons.settings),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.pink,
+              ),
+              child: Center(child: Text('SIVAEM')),
+            ),
+            ListTile(
+              title: const Text('Candidato'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Empresas'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Quem Somos?'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Fale Conosco'),
+              onTap: () {},
+            ),
+            const Divider(),
+            const Center(
+              child: Text('Todos os direitos reservados ® - 2024'),
+            ),
+          ],
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
