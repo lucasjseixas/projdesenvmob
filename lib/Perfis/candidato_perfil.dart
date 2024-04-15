@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/pages/notepages/criar_anuncio.dart';
 
-class CandidatoPerfil extends StatelessWidget {
-  const CandidatoPerfil({super.key});
+class CandidatoPerfil extends StatefulWidget {
+  final String usuarioCandidato;
+
+  const CandidatoPerfil({super.key, required this.usuarioCandidato});
+
+  @override
+  State<CandidatoPerfil> createState() => _CandidatoPerfilState();
+}
+
+class _CandidatoPerfilState extends State<CandidatoPerfil> {
+  late String usuarioCandidato;
+
+  get novoAnuncioCriado => null;
+
+  @override
+  void initState() {
+    usuarioCandidato = widget.usuarioCandidato;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +39,14 @@ class CandidatoPerfil extends StatelessWidget {
               height: 180,
             ),
           ),
-          const TextField(
-              decoration:
-                  InputDecoration()), //placeholder para centralizar a imagem
+          TextField(
+            controller: TextEditingController(text: usuarioCandidato),
+            decoration: const InputDecoration(
+              labelText: 'asdf',
+              border: OutlineInputBorder(),
+            ),
+            readOnly: true,
+          ), //placeholder para centralizar a imagem
         ],
       ),
     );

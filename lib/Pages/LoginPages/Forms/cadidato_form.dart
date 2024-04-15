@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/Perfis/candidato_perfil.dart';
+import 'package:projec1/pages/home_page.dart';
 
 final _formKeytwo = GlobalKey<FormState>();
 
@@ -139,8 +140,7 @@ class _CandidatoFormState extends State<CandidatoForm> {
                   if (_formKeytwo.currentState!.validate()) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const CandidatoPerfil()),
+                      MaterialPageRoute(builder: (context) => const HomePage()),
                     );
                   }
                 },

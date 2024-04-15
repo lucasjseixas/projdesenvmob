@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RandomButton extends StatelessWidget {
-  const RandomButton({Key? key, required this.text}) : super(key: key);
+  const RandomButton({super.key, required this.text});
   final String text;
 
   @override

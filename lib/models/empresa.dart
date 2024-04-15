@@ -3,5 +3,5 @@ class Empresa {
   final String email;
   final String cnpj;
 
-  Empresa({required this.nome, required this.email, required this.cnpj});
+  const Empresa({required this.nome, required this.email, required this.cnpj});
 }

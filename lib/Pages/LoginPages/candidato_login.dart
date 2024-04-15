@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/Pages/LoginPages/Forms/cadidato_form.dart';
+import 'package:projec1/Perfis/candidato_perfil.dart';
+import 'package:projec1/pages/LoginPages/Forms/cadidato_form.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -11,6 +12,9 @@ class CandidatoLoginInfo extends StatefulWidget {
 }
 
 class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
+  String usuarioCandidato = "";
+  String emailCandidato = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +36,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                   labelText: 'Usuario / E-mail / CPF',
                   prefixIcon: Icon(Icons.person_2),
                 ),
+                onChanged: (ctx) => usuarioCandidato = ctx,
                 keyboardType: TextInputType.text,
                 validator: (usuario) => usuario!.length < 4
                     ? 'Usuário deve possuir pelo menos 3 caracteres*'
@@ -50,7 +55,8 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                 keyboardType: TextInputType.text,
                 validator: (value) => value!.isEmpty ? 'Senha inválida' : null,
               ),
-              TextButton(onPressed: (){}, child: const Text('Esqueceu sua senha?')),
+              TextButton(
+                  onPressed: () {}, child: const Text('Esqueceu sua senha?')),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -71,7 +77,16 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                     padding: const EdgeInsets.all(25.0),
                     child: ElevatedButton(
                         onPressed: () {
-                          _formKey.currentState!.validate();
+                          if (_formKey.currentState!.validate()) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CandidatoPerfil(
+                                      usuarioCandidato: usuarioCandidato)),
+                            );
+                          } else {
+                            return; //Colocar um aviso de erro de login e manter na pagina
+                          }
                         },
                         child: const Text('Login')),
                   ),
@@ -83,4 +98,5 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
       ),
     );
   }
+  
 }
