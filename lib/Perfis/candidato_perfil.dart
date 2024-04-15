@@ -13,8 +13,6 @@ class CandidatoPerfil extends StatefulWidget {
 class _CandidatoPerfilState extends State<CandidatoPerfil> {
   late String usuarioCandidato;
 
-  get novoAnuncioCriado => null;
-
   @override
   void initState() {
     usuarioCandidato = widget.usuarioCandidato;
