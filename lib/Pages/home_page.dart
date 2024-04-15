@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'LoginPages/candidato_login.dart';
 import 'LoginPages/empresa_login.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Set<String> _selected = {'Modo Escuro'};
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +19,8 @@ class HomePage extends StatelessWidget {
         title: const Text('HOME PAGE'),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.settings),
-          ),
-        ],
+          IconButton(onPressed: (){}, icon: const Icon(Icons.settings))
+        ]
       ),
       drawer: Drawer(
         child: ListView(
@@ -44,10 +48,31 @@ class HomePage extends StatelessWidget {
               title: const Text('Fale Conosco'),
               onTap: () {},
             ),
-            const Divider(),
+            const Center(child: Text('Tema')),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: SegmentedButton(
+                multiSelectionEnabled: false,
+                segments: const <ButtonSegment<String>>[
+                  ButtonSegment<String>(
+                    value: 'Modo Escuro',
+                    icon: Icon(Icons.brightness_4),
+                  ),
+                  ButtonSegment<String>(
+                    value: 'Modo Claro',
+                    icon: Icon(Icons.brightness_2),
+                  ),
+                ],
+                selected: _selected,
+                onSelectionChanged: updateSelected,
+                showSelectedIcon: true,
+                selectedIcon: const Icon(Icons.check),
+              ),
+            ),
             const Center(
               child: Text('Todos os direitos reservados ® - 2024'),
             ),
+            const Divider(),
           ],
         ),
       ),
@@ -84,5 +109,17 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  PopupMenuItem _buildPopupMenuItem(String title) {
+    return PopupMenuItem(
+      child: Text(title),
+    );
+  }
+
+  void updateSelected(Set<String> newSelection){
+    setState(() {
+      _selected = newSelection;
+    });
   }
 }
