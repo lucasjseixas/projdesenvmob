@@ -21,82 +21,127 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
       appBar: AppBar(
         title: const Text('PAGINA DE LOGIN DE CANDIDATOS'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text('Ainda não é cadastrado? Clique em Cadastrar'),
-              TextFormField(
-                key: const Key('usuario'),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Usuario / E-mail / CPF',
-                  prefixIcon: Icon(Icons.person_2),
-                ),
-                onChanged: (ctx) => usuarioCandidato = ctx,
-                keyboardType: TextInputType.text,
-                validator: (usuario) => usuario!.length < 4
-                    ? 'Usuário deve possuir pelo menos 3 caracteres*'
-                    : null,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-              ),
-              TextFormField(
-                key: const Key('senha'),
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Senha',
-                  prefixIcon: Icon(Icons.key),
-                  suffixIcon: Icon(Icons.remove_red_eye),
-                ),
-                keyboardType: TextInputType.text,
-                validator: (value) => value!.isEmpty ? 'Senha inválida' : null,
-              ),
-              TextButton(
-                  onPressed: () {}, child: const Text('Esqueceu sua senha?')),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => const CandidatoForm()),
-                            ),
-                          );
-                        },
-                        child: const Text('Cadastrar')),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/particle_background.png'),
+              fit: BoxFit.cover),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[900],
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.all(8),
+                  child: const Text(
+                    'Ainda não é cadastrado? Clique em Cadastrar',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CandidatoPerfil(
-                                      usuarioCandidato: usuarioCandidato)),
-                            );
-                          } else {
-                            return; //Colocar um aviso de erro de login e manter na pagina
-                          }
-                        },
-                        child: const Text('Login')),
+                ),
+                TextFormField(
+                  key: const Key('usuario'),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Usuario / E-mail / CPF',
+                    prefixIcon: Icon(Icons.person_2),
                   ),
-                ],
-              ),
-            ],
+                  onChanged: (ctx) => usuarioCandidato = ctx,
+                  keyboardType: TextInputType.text,
+                  validator: (usuario) => usuario!.length < 4
+                      ? 'Usuário deve possuir pelo menos 3 caracteres*'
+                      : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                ),
+                TextFormField(
+                  key: const Key('senha'),
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Senha',
+                    prefixIcon: Icon(Icons.key),
+                    suffixIcon: Icon(Icons.remove_red_eye),
+                  ),
+                  keyboardType: TextInputType.text,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Senha inválida' : null,
+                ),
+                Container(
+                  constraints: const BoxConstraints(minWidth: 150.0),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Esqueceu sua senha?',
+                      style: TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: SizedBox(
+                        width: 100,
+                        height: 60,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => const CandidatoForm()),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Cadastrar',
+                              style: TextStyle(fontSize: 26),
+                            )),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: SizedBox(
+                        width: 100,
+                        height: 60,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CandidatoPerfil(
+                                        usuarioCandidato: usuarioCandidato)),
+                              );
+                            } else {
+                              return; //Colocar um aviso de erro de login e manter na pagina
+                            }
+                          },
+                          child: const Text(
+                            'Logar',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-  
 }

@@ -31,22 +31,40 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.pink,
               ),
-              child: Center(child: Text('SIVAEM')),
+              child: Center(
+                child: Text('SIVAEM'),
+              ),
             ),
             ListTile(
-              title: const Text('Candidato'),
-              onTap: () {},
+              title: const Text('Candidatos'),
+              leading: const Icon(Icons.person),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CandidatoLoginInfo()),
+                );
+              },
             ),
             ListTile(
               title: const Text('Empresas'),
-              onTap: () {},
+              leading: const Icon(Icons.business_sharp),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const EmpresaLoginInfo()),
+                );
+              },
             ),
             ListTile(
               title: const Text('Quem Somos?'),
               onTap: () {},
+              leading: const Icon(Icons.info),
             ),
             ListTile(
               title: const Text('Fale Conosco'),
+              leading: const Icon(Icons.support_agent),
               onTap: () {},
             ),
             /*
@@ -80,37 +98,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EmpresaLoginInfo()),
-                  );
-                },
-                icon: const Icon(Icons.business),
-                label: const Text('Empresas'),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CandidatoLoginInfo()),
-                  );
-                },
-                icon: const Icon(Icons.person),
-                label: const Text('Candidatos'),
-              )
-            ],
-          ),
-        ],
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/particle_background.png'),
+              fit: BoxFit.cover),
+        ),
       ),
     );
   }
