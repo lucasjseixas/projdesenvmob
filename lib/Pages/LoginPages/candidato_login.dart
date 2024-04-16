@@ -45,14 +45,14 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                   ),
                 ),
                 TextFormField(
-                  key: const Key('usuario'),
+                  key: const Key('usuarioCandidato'),
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Usuario / E-mail / CPF',
                     prefixIcon: Icon(Icons.person_2),
                   ),
-                  onChanged: (ctx) => usuarioCandidato = ctx,
                   keyboardType: TextInputType.text,
+                  onChanged: (ctx) => usuarioCandidato = ctx,
                   validator: (usuario) => usuario!.length < 4
                       ? 'Usuário deve possuir pelo menos 3 caracteres*'
                       : null,

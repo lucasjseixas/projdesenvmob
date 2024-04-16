@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/models/anuncio.dart';
-import 'package:projec1/pages/notepages/anuncio_page.dart';
 
 class CriarAnuncio extends StatefulWidget {
   const CriarAnuncio({super.key, required this.novoAnuncioCriado});
@@ -45,7 +44,8 @@ class _CriarAnuncioState extends State<CriarAnuncio> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
+        splashColor: Colors.amber,
         onPressed: () {
           if (_nomeController.text.isEmpty) {
             return;
@@ -59,10 +59,10 @@ class _CriarAnuncioState extends State<CriarAnuncio> {
             descricao: _descricaoController.text,
           );
           widget.novoAnuncioCriado(anuncio);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AnuncioPage()));
+          Navigator.of(context).pop();
         },
-        child: const Icon(Icons.save),
+        label: const Text('Salvar'),
+        icon: const Icon(Icons.save),
       ),
     );
   }

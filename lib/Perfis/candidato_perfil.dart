@@ -43,7 +43,8 @@ class _CandidatoPerfilState extends State<CandidatoPerfil> {
               border: OutlineInputBorder(),
             ),
             readOnly: true,
-          ), //placeholder para centralizar a imagem
+          ),
+          //placeholder para centralizar a imagem
         ],
       ),
     );

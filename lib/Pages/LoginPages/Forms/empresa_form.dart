@@ -47,124 +47,124 @@ class _EmpresaFormState extends State<EmpresaForm> {
               image: AssetImage('assets/images/particle_background.png'),
               fit: BoxFit.cover),
         ),
-        child: SingleChildScrollView(child:
-         Form(
-          key: _formKeytwo,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('nomecempresa'),
-                  controller: _nomeEmpresaController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite o nome da empresa completo'),
-                  keyboardType: TextInputType.text,
-                  validator: (nomeempresa) => nomeempresa!.length < 3
-                      ? 'O nome precisa ter 3 letras pelo menos*'
-                      : null,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKeytwo,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('nomecempresa'),
+                    controller: _nomeEmpresaController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite o nome da empresa completo'),
+                    keyboardType: TextInputType.text,
+                    validator: (nomeempresa) => nomeempresa!.length < 3
+                        ? 'O nome precisa ter 3 letras pelo menos*'
+                        : null,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('usuarioempresa'),
-                  controller: _usuarioEmpresaController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite o usuario'),
-                  keyboardType: TextInputType.text,
-                  validator: (usuarioempresa) => usuarioempresa!.length < 5
-                      ? 'O usuario precisa ter 3 letras pelo menos*'
-                      : null,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('usuarioempresa'),
+                    controller: _usuarioEmpresaController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite o usuario'),
+                    keyboardType: TextInputType.text,
+                    validator: (usuarioempresa) => usuarioempresa!.length < 5
+                        ? 'O usuario precisa ter 3 letras pelo menos*'
+                        : null,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('emailempresa'),
-                  controller: _emailEmpresaController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite o e-mail da empresa'),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: validateEmailtwo,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('emailempresa'),
+                    controller: _emailEmpresaController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite o e-mail da empresa'),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: validateEmailtwo,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('confirmaremailempresa'),
-                  controller: _emailEmpresaConfirmarController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                      labelText: 'Confirme o e-mail da empresa'),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: validateEmailtwo,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('confirmaremailempresa'),
+                    controller: _emailEmpresaConfirmarController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                        labelText: 'Confirme o e-mail da empresa'),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: validateEmailtwo,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: TextFormField(
-                  key: const Key('empresasenha'),
-                  obscureText: true,
-                  controller: _senhaEmpresaController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.key),
-                      suffixIcon: Icon(Icons.remove_red_eye),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite a senha'),
-                  keyboardType: TextInputType.text,
-                  validator: (empresasenha) => empresasenha!.length < 5
-                      ? 'Sua senha deve possuir pelo menos 5 caracteres*'
-                      : null,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('empresasenha'),
+                    obscureText: true,
+                    controller: _senhaEmpresaController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.key),
+                        suffixIcon: Icon(Icons.remove_red_eye),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite a senha'),
+                    keyboardType: TextInputType.text,
+                    validator: (empresasenha) => empresasenha!.length < 5
+                        ? 'Sua senha deve possuir pelo menos 5 caracteres*'
+                        : null,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKeytwo.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      child: const Text('OK')),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 300,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKeytwo.currentState!.validate()) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        child: const Text('OK')),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        clearTextField();
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      child: const Text('LIMPAR')),
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 300,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          clearTextField();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        child: const Text('LIMPAR')),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/models/anuncio.dart';
+import 'package:projec1/pages/notepages/anuncio_card.dart';
+import 'package:projec1/pages/notepages/criar_anuncio.dart';
 
 class AnuncioPage extends StatefulWidget {
   const AnuncioPage({super.key});
@@ -17,38 +19,37 @@ class _AnuncioPageState extends State<AnuncioPage> {
       appBar: AppBar(
         title: const Text('OFERTAS DE VAGAS'),
       ),
-      body: ListView.builder(
-        itemCount: anuncios.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Text(
-                    anuncios[index].nome,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    anuncios[index].descricao,
-                    style: const TextStyle(
-                      fontSize: 18,
-                    ),
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 19, 55, 85),
+              Color.fromARGB(255, 37, 37, 37),
+            ],
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: anuncios.length,
+          itemBuilder: (context, index) {
+            return AnuncioCard(
+                anuncio: anuncios[index],
+                index: index,
+                anuncioApagado: anuncioApagado);
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        tooltip: 'Adicionar Vaga',
+        label: const Text('Adicionar'),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) =>
+                  CriarAnuncio(novoAnuncioCriado: novoAnuncioCriado),
             ),
           );
         },
+        icon: const Icon(Icons.add),
       ),
     );
   }
@@ -58,7 +59,7 @@ class _AnuncioPageState extends State<AnuncioPage> {
     setState(() {});
   }
 
-  void auncioApagado(int index) {
+  void anuncioApagado(int index) {
     anuncios.removeAt(index);
     setState(() {});
   }

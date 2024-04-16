@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/pages/notepages/anuncio_page.dart';
-import 'package:projec1/utils/menu_settings.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +20,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.settings,
             ),
@@ -151,50 +144,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/particle_background.png',
-                ),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0), // Add any padding you need
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('asdf'),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
-
-  /*
-    PopupMenuItem _buildPopupMenuItem(String title) {
-      return PopupMenuItem(
-        child: Text(title),
-      );
-    }
-  */
-  /*
-    Set<String> _selected = {'Modo Escuro'};
-    void updateSelected(Set<String> newSelection) {
-      setState(() {
-        _selected = newSelection;
-      });
-    }
-  */
 }

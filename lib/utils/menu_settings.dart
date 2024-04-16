@@ -6,7 +6,7 @@ class MenuSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column();
-
+/*
     SegmentedButton(
                 multiSelectionEnabled: false,
                 segments: const <ButtonSegment<String>>[
@@ -24,5 +24,6 @@ class MenuSettings extends StatelessWidget {
                 showSelectedIcon: true,
                 selectedIcon: const Icon(Icons.check),
               ),
+  }*/
   }
 }

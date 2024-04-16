@@ -2,14 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:projec1/pages/loginpages/forms/empresa_form.dart';
 import 'package:projec1/perfis/empresa_perfil.dart';
 
-class EmpresaLoginInfo extends StatelessWidget {
+final _formKey = GlobalKey<FormState>();
+
+class EmpresaLoginInfo extends StatefulWidget {
   const EmpresaLoginInfo({super.key});
 
+  @override
+  State<EmpresaLoginInfo> createState() => _EmpresaLoginInfoState();
+}
+
+class _EmpresaLoginInfoState extends State<EmpresaLoginInfo> {
+  String usuarioEmpresa = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('LOGIN PARA EMPRESAS')),
+        title: const Center(
+          child: Text('LOGIN PARA EMPRESAS'),
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -21,31 +31,35 @@ class EmpresaLoginInfo extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(40.0),
           child: Form(
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const Text(
-                  'Ainda não é cadastrado? Clique em Cadastrar',
+                  'Empresa não é cadastrado? Clique em Cadastrar',
                   style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const TextField(
-                  key: Key('usuario'),
-                  decoration: InputDecoration(
+                TextFormField(
+                  key: const Key('usuarioEmpresa'),
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Usuario / E-mail / CNPJ',
-                    prefixIcon: Icon(
-                      Icons.business,
-                    ),
+                    prefixIcon: Icon(Icons.business),
                   ),
                   keyboardType: TextInputType.text,
+                  onChanged: (ctx) => usuarioEmpresa = ctx,
+                  validator: (usuario) => usuario!.length < 4
+                      ? 'Usuário deve possuir pelo menos 3 caracteres*'
+                      : null,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-                const TextField(
-                  key: Key('senha'),
+                TextFormField(
+                  key: const Key('senha'),
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Senha',
                     prefixIcon: Icon(
@@ -56,6 +70,8 @@ class EmpresaLoginInfo extends StatelessWidget {
                     ),
                   ),
                   keyboardType: TextInputType.text,
+                  validator: (value) =>
+                      value!.isEmpty ? 'Senha inválida' : null,
                 ),
                 TextButton(
                   onPressed: () {},
