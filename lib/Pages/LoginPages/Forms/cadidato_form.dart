@@ -47,41 +47,43 @@ class _CandidatoFormState extends State<CandidatoForm> {
               image: AssetImage('assets/images/particle_background.png'),
               fit: BoxFit.cover),
         ),
-        child: Form(
-          key: _formKeytwo,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('nomecandidato'),
-                  controller: _nomeCandidatoController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite seu nome completo'),
-                  keyboardType: TextInputType.text,
-                  validator: (nomecandidato) => nomecandidato!.length < 3
-                      ? 'Seu nome precisa ter 3 letras pelo menos*'
-                      : null,
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKeytwo,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('nomecandidato'),
+                    controller: _nomeCandidatoController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite seu nome completo'),
+                    keyboardType: TextInputType.text,
+                    validator: (nomecandidato) => nomecandidato!.length < 3
+                        ? 'Seu nome precisa ter 3 letras pelo menos*'
+                        : null,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('usuariocandidato'),
-                  controller: _usuarioCandidatoController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite seu usuario'),
-                  keyboardType: TextInputType.text,
-                  validator: (usuariocandidato) => usuariocandidato!.length < 5
-                      ? 'Seu usuario precisa ter 3 letras pelo menos*'
-                      : null,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('usuariocandidato'),
+                    controller: _usuarioCandidatoController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite seu usuario'),
+                    keyboardType: TextInputType.text,
+                    validator: (usuariocandidato) =>
+                        usuariocandidato!.length < 5
+                            ? 'Seu usuario precisa ter 3 letras pelo menos*'
+                            : null,
+                  ),
                 ),
-              ),
-              /*
+                /*
                   TextFormField(
                     key: const Key('enderecocandidato'),
                     decoration: const InputDecoration(labelText: 'Endereço Completo'),
@@ -99,86 +101,87 @@ class _CandidatoFormState extends State<CandidatoForm> {
                       _selectDate();
                     },
                   ),*/
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('emailcandidato'),
-                  controller: _emailCandidatoController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite seu e-mail'),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: validateEmailtwo,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('emailcandidato'),
+                    controller: _emailCandidatoController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite seu e-mail'),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: validateEmailtwo,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('confirmaremailcandidato'),
-                  controller: _emailCandidatoConfirmarController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.mail),
-                      border: OutlineInputBorder(),
-                      labelText: 'Confirme seu e-Mail'),
-                  keyboardType: TextInputType.emailAddress,
-                  validator: validateEmailtwo,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('confirmaremailcandidato'),
+                    controller: _emailCandidatoConfirmarController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.mail),
+                        border: OutlineInputBorder(),
+                        labelText: 'Confirme seu e-Mail'),
+                    keyboardType: TextInputType.emailAddress,
+                    validator: validateEmailtwo,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: TextFormField(
-                  key: const Key('candidatosenha'),
-                  obscureText: true,
-                  controller: _senhaCandidatoController,
-                  decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.key),
-                      suffixIcon: Icon(Icons.remove_red_eye),
-                      border: OutlineInputBorder(),
-                      labelText: 'Digite sua senha'),
-                  keyboardType: TextInputType.text,
-                  validator: (candidatosenha) => candidatosenha!.length < 5
-                      ? 'Sua senha deve possuir pelo menos 5 caracteres*'
-                      : null,
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: TextFormField(
+                    key: const Key('candidatosenha'),
+                    obscureText: true,
+                    controller: _senhaCandidatoController,
+                    decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.key),
+                        suffixIcon: Icon(Icons.remove_red_eye),
+                        border: OutlineInputBorder(),
+                        labelText: 'Digite sua senha'),
+                    keyboardType: TextInputType.text,
+                    validator: (candidatosenha) => candidatosenha!.length < 5
+                        ? 'Sua senha deve possuir pelo menos 5 caracteres*'
+                        : null,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKeytwo.currentState!.validate()) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      child: const Text('OK')),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 300,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKeytwo.currentState!.validate()) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomePage()),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        child: const Text('OK')),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SizedBox(
-                  height: 60,
-                  width: 300,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        clearTextField();
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      child: const Text('LIMPAR')),
+                Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: SizedBox(
+                    height: 60,
+                    width: 300,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          clearTextField();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        child: const Text('LIMPAR')),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

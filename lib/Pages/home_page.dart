@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/pages/notepages/anuncio_page.dart';
+import 'package:projec1/utils/menu_settings.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
 
@@ -25,7 +26,8 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             icon: const Icon(
               Icons.settings,
             ),

@@ -47,7 +47,8 @@ class _EmpresaFormState extends State<EmpresaForm> {
               image: AssetImage('assets/images/particle_background.png'),
               fit: BoxFit.cover),
         ),
-        child: Form(
+        child: SingleChildScrollView(child:
+         Form(
           key: _formKeytwo,
           child: Column(
             children: [
@@ -108,7 +109,7 @@ class _EmpresaFormState extends State<EmpresaForm> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(30.0),
                 child: TextFormField(
                   key: const Key('empresasenha'),
                   obscureText: true,
@@ -146,7 +147,7 @@ class _EmpresaFormState extends State<EmpresaForm> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(30.0),
+                padding: const EdgeInsets.all(25.0),
                 child: SizedBox(
                   height: 60,
                   width: 300,
@@ -163,6 +164,7 @@ class _EmpresaFormState extends State<EmpresaForm> {
             ],
           ),
         ),
+      ),
       ),
     );
   }
