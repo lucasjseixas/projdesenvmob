@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/Pages/recuperar_page.dart';
 import 'package:projec1/Perfis/candidato_perfil.dart';
 import 'package:projec1/pages/LoginPages/Forms/cadidato_form.dart';
 
@@ -80,7 +81,9 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RecuperarSenha()));
+                    },
                     child: const Text(
                       'Esqueceu sua senha?',
                       style: TextStyle(
