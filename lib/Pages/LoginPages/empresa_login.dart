@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/perfis/empresa_perfil.dart';
 
 class EmpresaLoginInfo extends StatelessWidget {
   const EmpresaLoginInfo({super.key});
@@ -7,7 +8,7 @@ class EmpresaLoginInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PAGINA DE LOGIN DE EMPRESAS'),
+        title: const Center(child: Text('LOGIN PARA EMPRESAS')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(40.0),
@@ -50,7 +51,12 @@ class EmpresaLoginInfo extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(25.0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EmpresaPerfil()));
+                      },
                       child: const Text('Login'),
                     ),
                   ),

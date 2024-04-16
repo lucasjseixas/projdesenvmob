@@ -81,23 +81,23 @@ class _CandidatoFormState extends State<CandidatoForm> {
                 ),
               ),
               /*
-              TextFormField(
-                key: const Key('enderecocandidato'),
-                decoration: const InputDecoration(labelText: 'Endereço Completo'),
-                keyboardType: TextInputType.streetAddress,
-              ),
-              TextFormField(
-                controller: _dateController,
-                key: const Key('datanascimentocandidato'),
-                decoration: const InputDecoration(
-                  labelText: 'Data de Nascimento',
-                  prefixIcon: Icon(Icons.calendar_today),
-                ),
-                readOnly: true,
-                onTap: () {
-                  _selectDate();
-                },
-              ),*/
+                  TextFormField(
+                    key: const Key('enderecocandidato'),
+                    decoration: const InputDecoration(labelText: 'Endereço Completo'),
+                    keyboardType: TextInputType.streetAddress,
+                  ),
+                  TextFormField(
+                    controller: _dateController,
+                    key: const Key('datanascimentocandidato'),
+                    decoration: const InputDecoration(
+                      labelText: 'Data de Nascimento',
+                      prefixIcon: Icon(Icons.calendar_today),
+                    ),
+                    readOnly: true,
+                    onTap: () {
+                      _selectDate();
+                    },
+                  ),*/
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextFormField(
@@ -140,22 +140,42 @@ class _CandidatoFormState extends State<CandidatoForm> {
                       : null,
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (_formKeytwo.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                      );
-                    }
-                  },
-                  child: const Text('CADASTRAR')),
-              ElevatedButton(
-                  onPressed: () {
-                    clearTextField();
-                  },
-                  child: const Text('LIMPAR')),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKeytwo.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                      child: const Text('OK')),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        clearTextField();
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                      child: const Text('LIMPAR')),
+                ),
+              ),
             ],
           ),
         ),

@@ -2,5 +2,5 @@ class Anuncio {
   final String nome;
   final String descricao;
 
-  Anuncio({required this.nome, required this.descricao});
+  const Anuncio({required this.nome, required this.descricao});
 }

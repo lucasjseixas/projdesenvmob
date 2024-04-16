@@ -13,13 +13,12 @@ class CandidatoLoginInfo extends StatefulWidget {
 
 class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
   String usuarioCandidato = "";
-  String emailCandidato = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PAGINA DE LOGIN DE CANDIDATOS'),
+        title: const Center(child: Text('LOGIN PARA CANDIDATOS')),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -104,6 +103,9 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                                 ),
                               );
                             },
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             child: const Text(
                               'Cadastrar',
                               style: TextStyle(fontSize: 26),
@@ -128,6 +130,9 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                               return; //Colocar um aviso de erro de login e manter na pagina
                             }
                           },
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
                           child: const Text(
                             'Logar',
                             style: TextStyle(fontSize: 24),

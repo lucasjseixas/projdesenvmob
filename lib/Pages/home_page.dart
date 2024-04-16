@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/pages/notepages/anuncio_page.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
 
@@ -14,7 +15,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SISTEMA SIVAEM'),
+        title: const Text(
+          'SISTEMA SIVAEM',
+          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -32,7 +36,10 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.pink,
               ),
               child: Center(
-                child: Text('SIVAEM'),
+                child: Text(
+                  'SIVAEM',
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             ListTile(
@@ -53,14 +60,27 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EmpresaLoginInfo()),
+                    builder: (context) => const EmpresaLoginInfo(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Portal de Vagas'),
+              leading: const Icon(Icons.work),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AnuncioPage(),
+                  ),
                 );
               },
             ),
             ListTile(
               title: const Text('Quem Somos?'),
-              onTap: () {},
               leading: const Icon(Icons.info),
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Fale Conosco'),
