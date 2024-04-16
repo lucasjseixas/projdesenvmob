@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/pages/notepages/criar_anuncio.dart';
 
 class CandidatoPerfil extends StatefulWidget {
   final String usuarioCandidato;

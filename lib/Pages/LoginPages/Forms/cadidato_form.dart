@@ -72,6 +72,7 @@ class _CandidatoFormState extends State<CandidatoForm> {
                   key: const Key('usuariocandidato'),
                   controller: _usuarioCandidatoController,
                   decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(),
                       labelText: 'Digite seu usuario'),
                   keyboardType: TextInputType.text,
@@ -117,6 +118,7 @@ class _CandidatoFormState extends State<CandidatoForm> {
                   key: const Key('confirmaremailcandidato'),
                   controller: _emailCandidatoConfirmarController,
                   decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.mail),
                       border: OutlineInputBorder(),
                       labelText: 'Confirme seu e-Mail'),
                   keyboardType: TextInputType.emailAddress,

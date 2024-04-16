@@ -12,16 +12,22 @@ class EmpresaPerfil extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-            Color.fromARGB(255, 160, 202, 236),
-            Color.fromARGB(255, 187, 136, 255)
+            Color.fromARGB(255, 73, 105, 131),
+            Color.fromARGB(255, 126, 91, 172)
           ]),
         ),
         child: const Form(
             child: Column(
           children: [
-            TextField(),
-            TextField(),
-            TextField(),
+            TextField(
+              readOnly: true,
+            ),
+            TextField(
+              readOnly: true,
+            ),
+            TextField(
+              readOnly: true,
+            ),
           ],
         )),
       ),

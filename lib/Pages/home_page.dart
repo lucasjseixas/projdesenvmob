@@ -17,13 +17,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           'SISTEMA SIVAEM',
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.settings),
+            icon: const Icon(
+              Icons.settings,
+            ),
           ),
         ],
       ),
@@ -38,24 +43,34 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Text(
                   'SIVAEM',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
             ListTile(
-              title: const Text('Candidatos'),
-              leading: const Icon(Icons.person),
+              title: const Text(
+                'Candidatos',
+              ),
+              leading: const Icon(
+                Icons.person,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const CandidatoLoginInfo()),
+                    builder: (context) => const CandidatoLoginInfo(),
+                  ),
                 );
               },
             ),
             ListTile(
               title: const Text('Empresas'),
-              leading: const Icon(Icons.business_sharp),
+              leading: const Icon(
+                Icons.business_sharp,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -66,8 +81,12 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: const Text('Portal de Vagas'),
-              leading: const Icon(Icons.work),
+              title: const Text(
+                'Portal de Vagas',
+              ),
+              leading: const Icon(
+                Icons.work,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -78,13 +97,21 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
-              title: const Text('Quem Somos?'),
-              leading: const Icon(Icons.info),
+              title: const Text(
+                'Quem Somos?',
+              ),
+              leading: const Icon(
+                Icons.info,
+              ),
               onTap: () {},
             ),
             ListTile(
-              title: const Text('Fale Conosco'),
-              leading: const Icon(Icons.support_agent),
+              title: const Text(
+                'Fale Conosco',
+              ),
+              leading: const Icon(
+                Icons.support_agent,
+              ),
               onTap: () {},
             ),
             /*
@@ -109,21 +136,46 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),*/
             const Padding(
-              padding: EdgeInsets.only(top: 400.0),
+              padding: EdgeInsets.only(
+                top: 400.0,
+              ),
               child: Center(
-                child: Text('Todos Os Direitos Reservados ® - 2024'),
+                child: Text(
+                  'Todos Os Direitos Reservados ® - 2024',
+                ),
               ),
             ),
             const Divider(),
           ],
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/particle_background.png'),
-              fit: BoxFit.cover),
-        ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/particle_background.png',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0), // Add any padding you need
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('asdf'),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -108,7 +108,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                                     borderRadius: BorderRadius.circular(8))),
                             child: const Text(
                               'Cadastrar',
-                              style: TextStyle(fontSize: 26),
+                              style: TextStyle(fontSize: 20),
                             )),
                       ),
                     ),
@@ -135,7 +135,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                                   borderRadius: BorderRadius.circular(8))),
                           child: const Text(
                             'Logar',
-                            style: TextStyle(fontSize: 24),
+                            style: TextStyle(fontSize: 20),
                           ),
                         ),
                       ),
