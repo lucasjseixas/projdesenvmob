@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/Pages/recuperar_page.dart';
 import 'package:projec1/perfis/empresa_perfil.dart';
 import 'package:projec1/pages/loginpages/forms/empresa_form.dart';
 
@@ -75,7 +76,9 @@ class _EmpresaLoginInfoState extends State<EmpresaLoginInfo> {
                       value!.isEmpty ? 'Senha inválida' : null,
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const RecuperarSenha()));
+                  },
                   child: const Text(
                     'Esqueceu sua senha?',
                     style: TextStyle(

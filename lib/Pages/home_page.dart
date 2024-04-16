@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/pages/faleconosco.dart';
+import 'package:projec1/pages//faleconosco_page.dart';
 import 'package:projec1/pages/notepages/anuncio_page.dart';
-import 'package:projec1/pages/quemsomos.dart';
+import 'package:projec1/pages/quemsomos_page.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
 import 'package:projec1/data/cardmain_data.dart';

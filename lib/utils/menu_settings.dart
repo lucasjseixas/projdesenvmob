@@ -5,25 +5,26 @@ class MenuSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
-/*
-    SegmentedButton(
-                multiSelectionEnabled: false,
-                segments: const <ButtonSegment<String>>[
-                  ButtonSegment<String>(
-                    value: 'Modo Escuro',
-                    icon: Icon(Icons.brightness_4),
-                  ),
-                  ButtonSegment<String>(
-                    value: 'Modo Claro',
-                    icon: Icon(Icons.brightness_2),
-                  ),
-                ],
-                selected: _selected,
-                onSelectionChanged: updateSelected,
-                showSelectedIcon: true,
-                selectedIcon: const Icon(Icons.check),
-              ),
+    return const Column();
+      /* children: [
+        SegmentedButton(
+          multiSelectionEnabled: false,
+          segments: const <ButtonSegment<String>>[
+            ButtonSegment<String>(
+              value: 'Modo Escuro',
+              icon: Icon(Icons.brightness_4),
+            ),
+            ButtonSegment<String>(
+              value: 'Modo Claro',
+              icon: Icon(Icons.brightness_2),
+            ),
+          ],
+          selected: _selected,
+          onSelectionChanged: updateSelected,
+          showSelectedIcon: true,
+          selectedIcon: const Icon(Icons.check),
+        ),
+      ],
   }*/
   }
 }

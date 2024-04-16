@@ -48,7 +48,7 @@ class _CandidatoPerfilState extends State<CandidatoPerfil> {
               child: TextField(
                 controller: TextEditingController(text: usuarioCandidato),
                 decoration: const InputDecoration(
-                  labelText: 'asdf',
+                  labelText: 'Nome',
                   border: OutlineInputBorder(),
                 ),
                 readOnly: true,
