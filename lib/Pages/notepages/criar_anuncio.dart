@@ -18,28 +18,34 @@ class _CriarAnuncioState extends State<CriarAnuncio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('NOVO ANUNCIO'),
+        title: const Center(child: Text('NOVO ANUNCIO')),
       ),
       body: Column(
         children: [
-          TextFormField(
-            controller: _nomeController,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Nome',
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextFormField(
+              controller: _nomeController,
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Nome da empresa ou candidato',
+              ),
             ),
           ),
-          TextFormField(
-            controller: _descricaoController,
-            style: const TextStyle(
-              fontSize: 22,
-            ),
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Descrição',
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextFormField(
+              controller: _descricaoController,
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Descrição da vaga procurada',
+              ),
             ),
           ),
         ],

@@ -1,4 +1,4 @@
-import 'package:projec1/Models/anuncio.dart';
+import 'package:projec1/models/anuncio.dart';
 
 var anuncioData = {
   '1': Anuncio(

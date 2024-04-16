@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 
-class EmpresaPerfil extends StatelessWidget {
-  const EmpresaPerfil({super.key});
+class EmpresaPerfil extends StatefulWidget {
+  final String usuarioEmpresa;
+
+  const EmpresaPerfil({super.key, required this.usuarioEmpresa});
+
+  @override
+  State<EmpresaPerfil> createState() => _EmpresaPerfilState();
+}
+
+class _EmpresaPerfilState extends State<EmpresaPerfil> {
+  late String usuarioEmpresa;
+
+  @override
+  void initState() {
+    usuarioEmpresa = widget.usuarioEmpresa;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadatro de Empresas'),
+        title: const Text('Perfil da Empresa'),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -16,17 +31,30 @@ class EmpresaPerfil extends StatelessWidget {
             Color.fromARGB(255, 126, 91, 172)
           ]),
         ),
-        child: const Form(
+        child: Form(
             child: Column(
           children: [
-            TextField(
-              readOnly: true,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(120),
+              child: Image.asset(
+                'assets/images/fotoplaceholder2.png',
+                fit: BoxFit.cover,
+                width: 180,
+                height: 180,
+              ),
             ),
-            TextField(
-              readOnly: true,
-            ),
-            TextField(
-              readOnly: true,
+            Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: TextField(
+                controller: TextEditingController(
+                  text: usuarioEmpresa,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Nome da Empresa',
+                  border: OutlineInputBorder(),
+                ),
+                readOnly: true,
+              ),
             ),
           ],
         )),

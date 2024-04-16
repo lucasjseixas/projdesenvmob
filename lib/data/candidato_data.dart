@@ -1,4 +1,4 @@
-import 'package:projec1/Models/candidato.dart';
+import 'package:projec1/models/candidato.dart';
 
 const candidatoData = {
   '1': Candidato(

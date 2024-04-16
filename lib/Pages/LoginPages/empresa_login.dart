@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/pages/loginpages/forms/empresa_form.dart';
 import 'package:projec1/perfis/empresa_perfil.dart';
+import 'package:projec1/pages/loginpages/forms/empresa_form.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -13,6 +13,7 @@ class EmpresaLoginInfo extends StatefulWidget {
 
 class _EmpresaLoginInfoState extends State<EmpresaLoginInfo> {
   String usuarioEmpresa = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +52,13 @@ class _EmpresaLoginInfoState extends State<EmpresaLoginInfo> {
                   ),
                   keyboardType: TextInputType.text,
                   onChanged: (ctx) => usuarioEmpresa = ctx,
-                  validator: (usuario) => usuario!.length < 4
+                  validator: (usuarioEmpresa) => usuarioEmpresa!.length < 4
                       ? 'Usuário deve possuir pelo menos 3 caracteres*'
                       : null,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
-                  key: const Key('senha'),
+                  key: const Key('senhaEmpresa'),
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -122,7 +123,8 @@ class _EmpresaLoginInfoState extends State<EmpresaLoginInfo> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const EmpresaPerfil(),
+                                builder: (context) => EmpresaPerfil(
+                                    usuarioEmpresa: usuarioEmpresa),
                               ),
                             );
                           },

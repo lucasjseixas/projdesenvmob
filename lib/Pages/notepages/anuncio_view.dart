@@ -17,7 +17,7 @@ class AnuncioView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Anuncio View"),
+        title: const Text("Página de Anúncios"),
         actions: [
           IconButton(
             onPressed: () {

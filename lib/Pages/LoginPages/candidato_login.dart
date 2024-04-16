@@ -18,7 +18,9 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('LOGIN PARA CANDIDATOS')),
+        title: const Center(
+          child: Text('LOGIN PARA CANDIDATOS'),
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -59,7 +61,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
-                  key: const Key('senha'),
+                  key: const Key('senhaCandidato'),
                   obscureText: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),

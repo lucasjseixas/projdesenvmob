@@ -22,30 +22,41 @@ class _CandidatoPerfilState extends State<CandidatoPerfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PERFIL DO CANDIDATO'),
+        title: const Text('Perfil do Candidato'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(120),
-            child: Image.asset(
-              'assets/images/fotoplaceholder.png',
-              fit: BoxFit.cover,
-              width: 180,
-              height: 180,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromARGB(255, 73, 105, 131),
+            Color.fromARGB(255, 126, 91, 172)
+          ]),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(120),
+              child: Image.asset(
+                'assets/images/fotoplaceholder.png',
+                fit: BoxFit.cover,
+                width: 180,
+                height: 180,
+              ),
             ),
-          ),
-          TextField(
-            controller: TextEditingController(text: usuarioCandidato),
-            decoration: const InputDecoration(
-              labelText: 'asdf',
-              border: OutlineInputBorder(),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextField(
+                controller: TextEditingController(text: usuarioCandidato),
+                decoration: const InputDecoration(
+                  labelText: 'asdf',
+                  border: OutlineInputBorder(),
+                ),
+                readOnly: true,
+              ),
             ),
-            readOnly: true,
-          ),
-          //placeholder para centralizar a imagem
-        ],
+            //placeholder para centralizar a imagem
+          ],
+        ),
       ),
     );
   }

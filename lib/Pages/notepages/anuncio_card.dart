@@ -24,6 +24,10 @@ class AnuncioCard extends StatelessWidget {
                 anuncioApagado: anuncioApagado)));
       },
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(

@@ -1,4 +1,4 @@
-import 'package:projec1/Models/empresa.dart';
+import 'package:projec1/models/empresa.dart';
 
 const empresaData = {
   '1': Empresa(nome: 'Ambev', email: 'ambev@ambev.com.br', cnpj: '123456789'),
