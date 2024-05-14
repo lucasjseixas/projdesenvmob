@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projec1/pages/home_page.dart';
-
-final _formKeytwo = GlobalKey<FormState>();
+import 'package:projec1/perfis/candidato_perfil.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CandidatoForm extends StatefulWidget {
   const CandidatoForm({super.key});
@@ -11,19 +11,15 @@ class CandidatoForm extends StatefulWidget {
 }
 
 class _CandidatoFormState extends State<CandidatoForm> {
-  //final _dateController = TextEditingController();
-  final _nomeCandidatoController = TextEditingController();
-  final _emailCandidatoController = TextEditingController();
-  final _emailCandidatoConfirmarController = TextEditingController();
-  final _senhaCandidatoController = TextEditingController();
-  final _usuarioCandidatoController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
 
   void clearTextField() {
-    _nomeCandidatoController.clear();
-    _emailCandidatoController.clear();
-    _emailCandidatoConfirmarController.clear();
-    _senhaCandidatoController.clear();
-    _usuarioCandidatoController.clear();
+    _nomeController.clear();
+    _emailController.clear();
+    _senhaController.clear();
   }
 
   String? validateEmailtwo(String? email) {
@@ -49,14 +45,14 @@ class _CandidatoFormState extends State<CandidatoForm> {
         ),
         child: SingleChildScrollView(
           child: Form(
-            key: _formKeytwo,
+            key: _formKey,
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextFormField(
                     key: const Key('nomecandidato'),
-                    controller: _nomeCandidatoController,
+                    controller: _nomeController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -70,42 +66,8 @@ class _CandidatoFormState extends State<CandidatoForm> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextFormField(
-                    key: const Key('usuariocandidato'),
-                    controller: _usuarioCandidatoController,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(),
-                        labelText: 'Digite seu usuario'),
-                    keyboardType: TextInputType.text,
-                    validator: (usuariocandidato) =>
-                        usuariocandidato!.length < 5
-                            ? 'Seu usuario precisa ter 3 letras pelo menos*'
-                            : null,
-                  ),
-                ),
-                /*
-                  TextFormField(
-                    key: const Key('enderecocandidato'),
-                    decoration: const InputDecoration(labelText: 'Endereço Completo'),
-                    keyboardType: TextInputType.streetAddress,
-                  ),
-                  TextFormField(
-                    controller: _dateController,
-                    key: const Key('datanascimentocandidato'),
-                    decoration: const InputDecoration(
-                      labelText: 'Data de Nascimento',
-                      prefixIcon: Icon(Icons.calendar_today),
-                    ),
-                    readOnly: true,
-                    onTap: () {
-                      _selectDate();
-                    },
-                  ),*/
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
                     key: const Key('emailcandidato'),
-                    controller: _emailCandidatoController,
+                    controller: _emailController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.email),
                         border: OutlineInputBorder(),
@@ -117,22 +79,9 @@ class _CandidatoFormState extends State<CandidatoForm> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: TextFormField(
-                    key: const Key('confirmaremailcandidato'),
-                    controller: _emailCandidatoConfirmarController,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.mail),
-                        border: OutlineInputBorder(),
-                        labelText: 'Confirme seu e-Mail'),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: validateEmailtwo,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
                     key: const Key('candidatosenha'),
                     obscureText: true,
-                    controller: _senhaCandidatoController,
+                    controller: _senhaController,
                     decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.key),
                         suffixIcon: Icon(Icons.remove_red_eye),
@@ -150,34 +99,45 @@ class _CandidatoFormState extends State<CandidatoForm> {
                     height: 60,
                     width: 300,
                     child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKeytwo.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HomePage()),
-                            );
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            try {
+                              // Criação do usuário no Firebase Auth
+                              UserCredential userCredential = await FirebaseAuth
+                                  .instance
+                                  .createUserWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _senhaController.text,
+                              );
+
+                              // Cadastro do candidato no Firestore
+                              await FirebaseFirestore.instance
+                                  .collection('Candidatos')
+                                  .doc(userCredential.user!.uid)
+                                  .set({
+                                'nome': _nomeController.text,
+                                'email': _emailController.text,
+                                'senha': _senhaController.text,
+                              });
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text(
+                                        'Candidato cadastrado com sucesso!')),
+                              );
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text(
+                                        'Erro ao cadastrar o candidato: $e')),
+                              );
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8))),
-                        child: const Text('OK')),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: SizedBox(
-                    height: 60,
-                    width: 300,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          clearTextField();
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8))),
-                        child: const Text('LIMPAR')),
+                        child: const Text('CADASTRAR')),
                   ),
                 ),
               ],
@@ -187,22 +147,4 @@ class _CandidatoFormState extends State<CandidatoForm> {
       ),
     );
   }
-/* // Funcao para criação de um calendario //
-
-  Future<void> _selectDate() async {
-    DateTime? _picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2006),
-      lastDate: DateTime(2100),
-    );
-    if (_picked != null) { 
-      setState(
-        () {
-          _dateController.text = _picked.toString().split(" ")[0];
-        },
-      );
-    }
-  }
-*/
 }

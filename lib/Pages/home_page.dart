@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projec1/pages//faleconosco_page.dart';
 import 'package:projec1/pages/notepages/anuncio_page.dart';
 import 'package:projec1/pages/quemsomos_page.dart';
+import 'package:projec1/providers/anuncio_provider.dart';
+import 'package:provider/provider.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
-import 'package:projec1/data/cardmain_data.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -118,27 +119,6 @@ class HomePage extends StatelessWidget {
                     builder: (context) => const FaleConosco()));
               },
             ),
-            /*
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: SegmentedButton(
-                  multiSelectionEnabled: false,
-                  segments: const <ButtonSegment<String>>[
-                    ButtonSegment<String>(
-                      value: 'Modo Escuro',
-                      icon: Icon(Icons.brightness_4),
-                    ),
-                    ButtonSegment<String>(
-                      value: 'Modo Claro',
-                      icon: Icon(Icons.brightness_2),
-                    ),
-                  ],
-                  selected: _selected,
-                  onSelectionChanged: updateSelected,
-                  showSelectedIcon: true,
-                  selectedIcon: const Icon(Icons.check),
-                ),
-              ),*/
             const Padding(
               padding: EdgeInsets.only(
                 top: 400.0,
@@ -182,62 +162,42 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  children: cardMainData.keys.map((String key) {
-                    final cardMain = cardMainData[key];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 2),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Container(
-                            height: 150,
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    height: 120,
-                                    width: 120,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/search.png'),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        cardMain!.campo1,
-                                        style: const TextStyle(
-                                            color: Color.fromARGB(
-                                                108, 150, 150, 238)),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        cardMain.campo2,
-                                        style: const TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 185, 149, 149)),
-                                      ),
-                                    ],
-                                  ),
+                child: Consumer<AnuncioProvider>(
+                  builder: (context, anuncioProvider, child) {
+                    final anuncios = anuncioProvider.anuncioList;
+                    return ListView.builder(
+                      itemCount: anuncios.length,
+                      itemBuilder: (context, index) {
+                        final anuncio = anuncios[index];
+                        return Card(
+                          child: ListTile(
+                            title: Text(anuncio.nome),
+                            subtitle: Text(anuncio.descricao),
+                            leading: const Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.edit)),
+                                IconButton(
+                                  onPressed: () {
+                                    Provider.of<AnuncioProvider>(context,
+                                            listen: false)
+                                        .removeAnuncio(anuncio);
+                                  },
+                                  icon: const Icon(Icons.delete),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     );
-                  }).toList(),
+                  },
                 ),
               ),
             ],

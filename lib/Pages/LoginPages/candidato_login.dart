@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/Pages/recuperar_page.dart';
 import 'package:projec1/Perfis/candidato_perfil.dart';
-import 'package:projec1/pages/LoginPages/Forms/cadidato_form.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-final _formKey = GlobalKey<FormState>();
+import 'package:projec1/pages/loginpages/forms/cadidato_form.dart';
+import 'package:projec1/perfis/perfilteste.dart';
 
 class CandidatoLoginInfo extends StatefulWidget {
   const CandidatoLoginInfo({super.key});
@@ -14,6 +17,10 @@ class CandidatoLoginInfo extends StatefulWidget {
 
 class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
   String usuarioCandidato = "";
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +56,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                 ),
                 TextFormField(
                   key: const Key('usuarioCandidato'),
+                  controller: _emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Usuario / E-mail / CPF',
@@ -62,6 +70,7 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
+                  controller: _senhaController,
                   key: const Key('senhaCandidato'),
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -82,7 +91,10 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RecuperarSenha()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RecuperarSenha()));
                     },
                     child: const Text(
                       'Esqueceu sua senha?',
@@ -100,21 +112,18 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                         width: 100,
                         height: 60,
                         child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) => const CandidatoForm()),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                            child: const Text(
-                              'Cadastrar',
-                              style: TextStyle(fontSize: 20),
-                            )),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const CandidatoForm()));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          child: const Text(
+                            'Cadastrar',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
                       ),
                     ),
                     Padding(
@@ -123,16 +132,26 @@ class _CandidatoLoginInfoState extends State<CandidatoLoginInfo> {
                         width: 100,
                         height: 60,
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                          onPressed: () async {
+                            try {
+                              // Fazer login com Firebase Auth
+                              await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _senhaController.text,
+                              );
+
+                              // Após o login bem-sucedido, navegue para a tela que acessa os dados do Firestore
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => CandidatoPerfil(
-                                        usuarioCandidato: usuarioCandidato)),
+                                    builder: (context) => const PerfilTeste()),
                               );
-                            } else {
-                              return; //Colocar um aviso de erro de login e manter na pagina
+                            } catch (e) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content: Text('Falha ao fazer login: $e')),
+                              );
                             }
                           },
                           style: ElevatedButton.styleFrom(
