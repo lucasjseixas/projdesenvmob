@@ -17,11 +17,33 @@ class _PerfilTesteState extends State<PerfilTeste> {
   final TextEditingController _nomeanunciocontroller = TextEditingController();
   final TextEditingController _descricaoanunciocontroller =
       TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  bool isEditing = false;
+  final String userId = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('PERFIL TESTE'),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                if (isEditing) {
+                  await FirebaseFirestore.instance
+                      .collection('Candidatos')
+                      .doc(userId)
+                      .update({
+                    'nome': _nomeController.text,
+                    'email': _emailController.text,
+                  });
+                }
+                setState(() {
+                  isEditing = !isEditing;
+                });
+              },
+              icon: Icon(isEditing ? Icons.save : Icons.edit))
+        ],
       ),
       body: Center(
         child: Column(
@@ -58,14 +80,14 @@ class _PerfilTesteState extends State<PerfilTeste> {
                       TextField(
                         controller:
                             TextEditingController(text: userData['nome']),
-                        readOnly: true,
+                        readOnly: !isEditing,
                       ),
                       const SizedBox(height: 16),
                       const Text('Email:', style: TextStyle(fontSize: 18)),
                       TextField(
                         controller:
                             TextEditingController(text: userData['email']),
-                        readOnly: true,
+                        readOnly: !isEditing,
                       ),
                     ],
                   ),

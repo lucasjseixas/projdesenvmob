@@ -140,9 +140,11 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
                 colors: [
-                  Color.fromARGB(255, 37, 60, 78),
-                  Color.fromARGB(255, 15, 22, 20),
+                  Color.fromARGB(255, 21, 115, 192),
+                  Color.fromARGB(255, 142, 227, 244)
                 ],
               ),
             ),

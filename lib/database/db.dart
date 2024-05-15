@@ -15,3 +15,5 @@ class DBMethods {
         .get();
   }
 }
+
+// Funciona, porém foi feita uma nova implementação dentro da aplicação
