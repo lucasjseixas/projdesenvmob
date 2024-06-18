@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:projec1/pages/home_page.dart';
 import 'package:projec1/providers/anuncio_provider.dart';
+import 'package:projec1/utils/imagepicker/imagepicker.dart';
 import 'package:provider/provider.dart';
 
 class PerfilTeste extends StatefulWidget {
@@ -21,6 +26,24 @@ class _PerfilTesteState extends State<PerfilTeste> {
   final TextEditingController _emailController = TextEditingController();
   bool isEditing = false;
   final String userId = FirebaseAuth.instance.currentUser!.uid;
+  //File? _pickedImage;
+  Uint8List? _image;
+
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery); // .gallery ou .camera
+    setState(() {
+      _image = img;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Imagem adicionada com sucesso!',
+            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,80 +69,84 @@ class _PerfilTesteState extends State<PerfilTeste> {
         ],
       ),
       body: Center(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                const CircleAvatar(
-                  radius: 64,
-                  backgroundImage: NetworkImage(
-                      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png'),
+        child: Column(children: [
+          Stack(
+            children: [
+              _image != null
+                  ? CircleAvatar(
+                      radius: 64,
+                      backgroundImage: MemoryImage(_image!),
+                    )
+                  : const CircleAvatar(
+                      radius: 64,
+                      backgroundImage: NetworkImage(
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png'),
+                    ),
+              Positioned(
+                bottom: -10,
+                left: 80,
+                child: IconButton(
+                  onPressed: () {
+                    selectImage();
+                  },
+                  icon: const Icon(Icons.add_a_photo),
                 ),
-                Positioned(
-                  bottom: -10,
-                  left: 80,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add_a_photo),
-                  ),
-                )
-              ],
-            ),
-            StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('Candidatos')
-                  .where('email', isEqualTo: email)
-                  .snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Erro: ${snapshot.error}'),
-                  );
-                }
-                if (snapshot.data!.docs.isEmpty) {
-                  return const Center(
-                    child: Text('Nenhum dado encontrado para este usuário.'),
-                  );
-                }
-                var userData =
-                    snapshot.data!.docs[0].data() as Map<String, dynamic>;
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Nome:', style: TextStyle(fontSize: 18)),
-                      TextField(
-                        controller:
-                            TextEditingController(text: userData['nome']),
-                        readOnly: !isEditing,
-                      ),
-                      const SizedBox(height: 16),
-                      const Text('Email:', style: TextStyle(fontSize: 18)),
-                      TextField(
-                        controller:
-                            TextEditingController(text: userData['email']),
-                        readOnly: !isEditing,
-                      ),
-                    ],
-                  ),
+              ),
+            ],
+          ),
+          StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('Candidatos')
+                .where('email', isEqualTo: email)
+                .snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              },
-            ),
-            ElevatedButton.icon(
-              onPressed: () async {
-                _displayTextInputDialog();
-              },
-              label: const Text('ADICIONAR ANUNCIO'),
-              icon: const Icon(Icons.save),
-            )
-          ],
-        ),
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text('Erro: ${snapshot.error}'),
+                );
+              }
+              if (snapshot.data!.docs.isEmpty) {
+                return const Center(
+                  child: Text('Nenhum dado encontrado para este usuário.'),
+                );
+              }
+              var userData =
+                  snapshot.data!.docs[0].data() as Map<String, dynamic>;
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Nome:', style: TextStyle(fontSize: 18)),
+                    TextField(
+                      controller: TextEditingController(text: userData['nome']),
+                      readOnly: !isEditing,
+                    ),
+                    const SizedBox(height: 16),
+                    const Text('Email:', style: TextStyle(fontSize: 18)),
+                    TextField(
+                      controller:
+                          TextEditingController(text: userData['email']),
+                      readOnly: !isEditing,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ElevatedButton.icon(
+            onPressed: () async {
+              _displayTextInputDialog();
+            },
+            label: const Text('ADICIONAR ANUNCIO'),
+            icon: const Icon(Icons.save),
+          )
+        ]),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
@@ -191,4 +218,33 @@ class _PerfilTesteState extends State<PerfilTeste> {
           );
         });
   }
+
+  // Future<void> _pickImage() async {
+  //   if (!kIsWeb) {
+  //     final ImagePicker _picker = ImagePicker();
+  //     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //     if (image != null) {
+  //       var selected = File(image.path);
+  //       setState(() {
+  //         _pickedImage = selected;
+  //       });
+  //     } else {
+  //       print('Nenhuma imagem foi selecionada');
+  //     }
+  //   } else if (kIsWeb) {
+  //     final ImagePicker _picker = ImagePicker();
+  //     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //     if (image != null) {
+  //       var f = await image.readAsBytes();
+  //       setState(() {
+  //         webImage = f;
+  //         _pickedImage = File('a');
+  //       });
+  //     } else {
+  //       print('Nenhuma imagem foi selecionada');
+  //     }
+  //   } else {
+  //     print('retorno image errado');
+  //   }
+  // }
 }

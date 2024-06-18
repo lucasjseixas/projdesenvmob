@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projec1/models/anuncio.dart';
 import 'package:projec1/pages/notepages/anuncio_card.dart';
 import 'package:projec1/pages/notepages/criar_anuncio.dart';
+import 'package:projec1/providers/themeprovider.dart';
+import 'package:provider/provider.dart';
 
 class AnuncioPage extends StatefulWidget {
   const AnuncioPage({super.key});
@@ -18,6 +20,24 @@ class _AnuncioPageState extends State<AnuncioPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('OFERTAS DE VAGAS'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, _) => themeProvider.isDarkMode
+                  ? const Icon(Icons.wb_sunny)
+                  : const Icon(Icons.nightlight_round),
+            ),
+          ),
+          Switch(
+            value: Provider.of<ThemeProvider>(context).isDarkMode,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: anuncios.length,
