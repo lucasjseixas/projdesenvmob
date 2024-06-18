@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projec1/pages/home_page.dart';
 import 'package:projec1/providers/anuncio_provider.dart';
+import 'package:projec1/utils/geolocator/geoformendereco.dart';
 import 'package:projec1/utils/geolocator/testeformgeolocation.dart';
 import 'package:projec1/utils/imagepicker/imagepicker.dart';
 import 'package:provider/provider.dart';
@@ -147,12 +148,15 @@ class _PerfilTesteState extends State<PerfilTeste> {
             label: const Text('ADICIONAR ANUNCIO'),
             icon: const Icon(Icons.save),
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const TesteFormGeolocation()));
-              },
-              child: Text('Formulario Extra'))
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const TesteFormGeolocation()));
+                },
+                child: const Text('Formulario Extra')),
+          )
         ]),
       ),
       floatingActionButton: FloatingActionButton(
