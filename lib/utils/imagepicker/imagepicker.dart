@@ -12,3 +12,5 @@ pickImage(ImageSource source) async {
     return await _file.readAsBytes();
   }
 }
+
+// implementado na pagina teste de perfil diretamente 
