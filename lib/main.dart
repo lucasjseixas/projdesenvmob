@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projec1/providers/anuncio_provider.dart';
+import 'package:projec1/providers/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,7 +11,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const App());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ThemeProvider>(
+      create: (context) => ThemeProvider(),
+    )
+  ], child: const App()));
 }
 
 class App extends StatelessWidget {
@@ -19,14 +24,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AnuncioProvider())
+        ChangeNotifierProvider(create: (context) => AnuncioProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          useMaterial3: true,
-          brightness: Brightness.dark,
-        ),
+        theme: Provider.of<ThemeProvider>(context).themeData,
         home: const HomePage(),
       ),
     );

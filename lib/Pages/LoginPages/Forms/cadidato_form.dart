@@ -37,111 +37,104 @@ class _CandidatoFormState extends State<CandidatoForm> {
       appBar: AppBar(
         title: const Text('Formulario de cadastro de Candidatos'),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/particle_background.png'),
-              fit: BoxFit.cover),
-        ),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
-                    key: const Key('nomecandidato'),
-                    controller: _nomeController,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(),
-                        labelText: 'Digite seu nome completo'),
-                    keyboardType: TextInputType.text,
-                    validator: (nomecandidato) => nomecandidato!.length < 3
-                        ? 'Seu nome precisa ter 3 letras pelo menos*'
-                        : null,
-                  ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TextFormField(
+                  key: const Key('nomecandidato'),
+                  controller: _nomeController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.person),
+                      border: OutlineInputBorder(),
+                      labelText: 'Digite seu nome completo'),
+                  keyboardType: TextInputType.text,
+                  validator: (nomecandidato) => nomecandidato!.length < 3
+                      ? 'Seu nome precisa ter 3 letras pelo menos*'
+                      : null,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
-                    key: const Key('emailcandidato'),
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(),
-                        labelText: 'Digite seu e-mail'),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: validateEmailtwo,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TextFormField(
+                  key: const Key('emailcandidato'),
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(),
+                      labelText: 'Digite seu e-mail'),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: validateEmailtwo,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: TextFormField(
-                    key: const Key('candidatosenha'),
-                    obscureText: true,
-                    controller: _senhaController,
-                    decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.key),
-                        suffixIcon: Icon(Icons.remove_red_eye),
-                        border: OutlineInputBorder(),
-                        labelText: 'Digite sua senha'),
-                    keyboardType: TextInputType.text,
-                    validator: (candidatosenha) => candidatosenha!.length < 5
-                        ? 'Sua senha deve possuir pelo menos 5 caracteres*'
-                        : null,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TextFormField(
+                  key: const Key('candidatosenha'),
+                  obscureText: true,
+                  controller: _senhaController,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.key),
+                      suffixIcon: Icon(Icons.remove_red_eye),
+                      border: OutlineInputBorder(),
+                      labelText: 'Digite sua senha'),
+                  keyboardType: TextInputType.text,
+                  validator: (candidatosenha) => candidatosenha!.length < 5
+                      ? 'Sua senha deve possuir pelo menos 5 caracteres*'
+                      : null,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: SizedBox(
-                    height: 60,
-                    width: 300,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            try {
-                              // Criação do usuário no Firebase Auth
-                              UserCredential userCredential = await FirebaseAuth
-                                  .instance
-                                  .createUserWithEmailAndPassword(
-                                email: _emailController.text,
-                                password: _senhaController.text,
-                              );
+              ),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: SizedBox(
+                  height: 60,
+                  width: 300,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          try {
+                            // Criação do usuário no Firebase Auth
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .createUserWithEmailAndPassword(
+                              email: _emailController.text,
+                              password: _senhaController.text,
+                            );
 
-                              // Cadastro do candidato no Firestore
-                              await FirebaseFirestore.instance
-                                  .collection('Candidatos')
-                                  .doc(userCredential.user!.uid)
-                                  .set({
-                                'nome': _nomeController.text,
-                                'email': _emailController.text,
-                                'senha': _senhaController.text,
-                              });
+                            // Cadastro do candidato no Firestore
+                            await FirebaseFirestore.instance
+                                .collection('Candidatos')
+                                .doc(userCredential.user!.uid)
+                                .set({
+                              'nome': _nomeController.text,
+                              'email': _emailController.text,
+                              'senha': _senhaController.text,
+                            });
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Candidato cadastrado com sucesso!')),
-                              );
-                            } catch (e) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(
-                                        'Erro ao cadastrar o candidato: $e')),
-                              );
-                            }
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Candidato cadastrado com sucesso!')),
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'Erro ao cadastrar o candidato: $e')),
+                            );
                           }
-                        },
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8))),
-                        child: const Text('CADASTRAR')),
-                  ),
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8))),
+                      child: const Text('CADASTRAR')),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

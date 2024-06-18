@@ -3,6 +3,7 @@ import 'package:projec1/pages//faleconosco_page.dart';
 import 'package:projec1/pages/notepages/anuncio_page.dart';
 import 'package:projec1/pages/quemsomos_page.dart';
 import 'package:projec1/providers/anuncio_provider.dart';
+import 'package:projec1/providers/themeprovider.dart';
 import 'package:provider/provider.dart';
 import 'loginpages/candidato_login.dart';
 import 'loginpages/empresa_login.dart';
@@ -24,10 +25,20 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.settings,
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, _) => themeProvider.isDarkMode
+                  ? const Icon(Icons.wb_sunny)
+                  : const Icon(Icons.nightlight_round),
             ),
+          ),
+          Switch(
+            value: Provider.of<ThemeProvider>(context).isDarkMode,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
           ),
         ],
       ),
@@ -125,7 +136,7 @@ class HomePage extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Todos Os Direitos Reservados ® - 2024',
+                  'Todos os Direitos Reservados ® - 2024',
                 ),
               ),
             ),
@@ -135,20 +146,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color.fromARGB(255, 21, 115, 192),
-                  Color.fromARGB(255, 142, 227, 244)
-                ],
-              ),
-            ),
-          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -159,7 +156,6 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
               ),

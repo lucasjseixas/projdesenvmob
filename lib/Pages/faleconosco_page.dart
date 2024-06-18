@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/providers/themeprovider.dart';
+import 'package:provider/provider.dart';
 
 class FaleConosco extends StatelessWidget {
   const FaleConosco({super.key});
@@ -11,23 +13,30 @@ class FaleConosco extends StatelessWidget {
           'Fale Conosco',
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 8, 175, 78),
-                Color.fromARGB(255, 255, 255, 255)
-              ]),
-        ),
-        child: Center(
-          child: Image.asset(
-            'assets/images/wpp2.png',
-            width: 300,
-            height: 300,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, _) => themeProvider.isDarkMode
+                  ? const Icon(Icons.wb_sunny)
+                  : const Icon(Icons.nightlight_round),
+            ),
           ),
+          Switch(
+            value: Provider.of<ThemeProvider>(context).isDarkMode,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Image.asset(
+          'assets/images/wpp2.png',
+          width: 300,
+          height: 300,
         ),
       ),
     );

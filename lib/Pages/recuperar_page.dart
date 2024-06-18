@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/providers/themeprovider.dart';
+import 'package:provider/provider.dart';
 
 class RecuperarSenha extends StatelessWidget {
   const RecuperarSenha({super.key});
@@ -11,23 +13,32 @@ class RecuperarSenha extends StatelessWidget {
             'Pagina de recuperação de dados',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-        ),
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color.fromARGB(255, 182, 7, 7),
-                  Color.fromARGB(255, 254, 233, 233)
-                ]),
-          ),
-          child: const Center(
-            child: Image(
-              image: AssetImage('assets/images/clownpassword.png'),
-              width: 300,
-              height: 300,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleTheme();
+              },
+              icon: Consumer<ThemeProvider>(
+                builder: (context, themeProvider, _) => themeProvider.isDarkMode
+                    ? const Icon(Icons.wb_sunny)
+                    : const Icon(Icons.nightlight_round),
+              ),
             ),
+            Switch(
+              value: Provider.of<ThemeProvider>(context).isDarkMode,
+              onChanged: (value) {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleTheme();
+              },
+            ),
+          ],
+        ),
+        body: const Center(
+          child: Image(
+            image: AssetImage('assets/images/clownpassword.png'),
+            width: 300,
+            height: 300,
           ),
         ));
   }

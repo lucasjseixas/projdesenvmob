@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projec1/providers/themeprovider.dart';
+import 'package:provider/provider.dart';
 
 class QuemSomos extends StatelessWidget {
   const QuemSomos({super.key});
@@ -11,23 +13,30 @@ class QuemSomos extends StatelessWidget {
           'Quem Somos?',
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 196, 183, 4),
-                Color.fromARGB(255, 0, 0, 0)
-              ]),
-        ),
-        child: Center(
-          child: Image.asset(
-            'assets/images/emconstrucao.png',
-            width: 300,
-            height: 300,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, _) => themeProvider.isDarkMode
+                  ? const Icon(Icons.wb_sunny)
+                  : const Icon(Icons.nightlight_round),
+            ),
           ),
+          Switch(
+            value: Provider.of<ThemeProvider>(context).isDarkMode,
+            onChanged: (value) {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Image.asset(
+          'assets/images/emconstrucao.png',
+          width: 300,
+          height: 300,
         ),
       ),
     );

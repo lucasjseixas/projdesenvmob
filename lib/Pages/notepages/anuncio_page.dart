@@ -19,24 +19,14 @@ class _AnuncioPageState extends State<AnuncioPage> {
       appBar: AppBar(
         title: const Text('OFERTAS DE VAGAS'),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 19, 55, 85),
-              Color.fromARGB(255, 37, 37, 37),
-            ],
-          ),
-        ),
-        child: ListView.builder(
-          itemCount: anuncios.length,
-          itemBuilder: (context, index) {
-            return AnuncioCard(
-                anuncio: anuncios[index],
-                index: index,
-                anuncioApagado: anuncioApagado);
-          },
-        ),
+      body: ListView.builder(
+        itemCount: anuncios.length,
+        itemBuilder: (context, index) {
+          return AnuncioCard(
+              anuncio: anuncios[index],
+              index: index,
+              anuncioApagado: anuncioApagado);
+        },
       ),
       floatingActionButton: FloatingActionButton.extended(
         tooltip: 'Adicionar Vaga',
