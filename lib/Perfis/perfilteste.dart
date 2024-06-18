@@ -48,6 +48,23 @@ class _PerfilTesteState extends State<PerfilTeste> {
       body: Center(
         child: Column(
           children: [
+            Stack(
+              children: [
+                const CircleAvatar(
+                  radius: 64,
+                  backgroundImage: NetworkImage(
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/510px-Default_pfp.svg.png'),
+                ),
+                Positioned(
+                  bottom: -10,
+                  left: 80,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add_a_photo),
+                  ),
+                )
+              ],
+            ),
             StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('Candidatos')
@@ -134,17 +151,24 @@ class _PerfilTesteState extends State<PerfilTeste> {
         builder: (context) {
           return AlertDialog(
             title: const Text('Adicione um Anuncio'),
-            content: Column(
-              children: [
-                TextField(
-                  controller: _nomeanunciocontroller,
-                  decoration: const InputDecoration(hintText: "Nome"),
-                ),
-                TextField(
-                  controller: _descricaoanunciocontroller,
-                  decoration: const InputDecoration(hintText: "Descrição"),
-                ),
-              ],
+            content: SizedBox(
+              width: 300,
+              height: 300,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _nomeanunciocontroller,
+                    decoration: const InputDecoration(hintText: "Nome"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: TextField(
+                      controller: _descricaoanunciocontroller,
+                      decoration: const InputDecoration(hintText: "Descrição"),
+                    ),
+                  ),
+                ],
+              ),
             ),
             actions: <Widget>[
               MaterialButton(
