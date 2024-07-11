@@ -1,4 +1,4 @@
-# projec1
+# Projeto de Desenvolvimento Mobile
 
 <p>Universidade Tecnológica Federal do Paraná - UTFPR - Ponta Grossa/PR</p>
 <p>Ciência da Computação</p>
