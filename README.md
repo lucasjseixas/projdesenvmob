@@ -33,3 +33,5 @@ Baseando-se na disciplina de Sistemas Distribuidos, a ideia seria executar o des
 <p>--> Busca de candidatos <-- [ filtrar por competencias e experiencia ]</p>
 
 <p>Caso algum dos topicos acima se mostrar trabalhoso demais e cause problemas com data de entrega, será removido do projeto, podendo ser adicionado novamente no futuro, ou nao.</p>
+
+<p><a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=flutter"/></a></p><p><a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=firebase"/></a></p>
